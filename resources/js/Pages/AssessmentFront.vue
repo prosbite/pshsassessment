@@ -8,17 +8,22 @@ const form = ref({
   firstName: '',
   entryCode: '',
 })
-
+const invalidEntry = ref(false)
 const submitUser = () => {
-  let data = {
-    ...form.value,
-    assessment: useQuestions().value
-  }
-  router.post(route('user-check'), data, { // 'users.store' is your Laravel route name
-    onError: (errors) => {
-        alert("Something went horribly wrong!")
-    },
-  })
+    if(form.value.entryCode !== 'trial-2025') {
+        invalidEntry.value = true
+    }else {
+        invalidEntry.value = false
+        let data = {
+            ...form.value,
+            assessment: useQuestions().value
+        }
+        router.post(route('user-check'), data, { // 'users.store' is your Laravel route name
+            onError: (errors) => {
+                alert("Something went horribly wrong!")
+            },
+        })
+    }
 }
 
 onMounted(() => {
@@ -80,7 +85,7 @@ onMounted(() => {
             <!-- Entry Code Input -->
             <div>
                 <label for="entryCode" class="block text-sm font-medium text-gray-700 mb-1">
-                    Entry Code
+                    Enter Code
                 </label>
                 <input
                     v-model="form.entryCode"
@@ -91,6 +96,7 @@ onMounted(() => {
                     class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-base outline-none transition duration-150 ease-in-out"
                     required
                 />
+                <p v-if="invalidEntry" class="text-red-500 font-bold text-sm mt-1">Invalid entry code</p>
             </div>
 
             <!-- Start Assessment Button -->
