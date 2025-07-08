@@ -37,12 +37,18 @@ class QuestionaireController extends Controller
         ]);
     }
 
-    return redirect()->route('assessment-complete')
+    return redirect()->route('questionaire')
                          ->with(['udata' => $assessment]);
     }
 
     public function complete()
     {
         return Inertia::render('AssessmentComplete');
+    }
+
+    public function results()
+    {
+        $assessment = Assessment::all();
+        return Inertia::render('AssessmentResults')->with(['assessment' => $assessment]);
     }
 }

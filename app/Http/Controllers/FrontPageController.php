@@ -27,7 +27,13 @@ class FrontPageController extends Controller
             return redirect()->route('questionaire')
                             ->with(['udata' => $assessment]);
         }
+        $assessment = Assessment::create([
+            'firstName' => $request->firstName,
+            'lastName' => $request->lastName,
+            'entryCode' => $request->entryCode,
+            'assessment' => $request->assessment,
+        ]);
         return redirect()->route('questionaire')
-                         ->with(['udata' => $request->all()]);
+                         ->with(['udata' => $assessment]);
     }
 }

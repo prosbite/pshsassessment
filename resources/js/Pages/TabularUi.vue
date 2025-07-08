@@ -69,8 +69,8 @@ const submit = () => {
     router.post(route('questionaire'), formData)
 }
 onMounted(() => {
-    if(!page.props.flash?.udata){
-        router.visit(route('front'))
+    if(!localStorage.getItem('assessment')){
+        // router.visit(route('front'))
     }
 })
 </script>

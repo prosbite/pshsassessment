@@ -21,11 +21,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useQuestions } from '@/composables/questions'
-onMounted(() => {
-    console.log(useQuestions().value[0])
-})
+
 const answers = ref({})
 const answer = (answer) => {
     alert(answer)

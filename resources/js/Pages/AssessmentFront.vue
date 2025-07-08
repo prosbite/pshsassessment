@@ -1,22 +1,31 @@
 <script setup>
 import { router, Link } from '@inertiajs/vue3'
-import { useForm } from '@inertiajs/vue3'
+import { onMounted, ref } from 'vue'
+import { useQuestions } from '@/composables/questions'
 
-const form = useForm({
+const form = ref({
   lastName: '',
   firstName: '',
   entryCode: '',
 })
 
 const submitUser = () => {
-  // THIS IS WHERE YOU SPECIFY WHERE THE DATA GOES
-  // Option A: Using a named route (recommended for robustness)
-  form.post(route('user-check'), { // 'users.store' is your Laravel route name
+  let data = {
+    ...form.value,
+    assessment: useQuestions().value
+  }
+  router.post(route('user-check'), data, { // 'users.store' is your Laravel route name
     onError: (errors) => {
         alert("Something went horribly wrong!")
     },
   })
 }
+
+onMounted(() => {
+    if(localStorage.getItem('assessment')) {
+        router.visit(route('questionaire'))
+    }
+})
 </script>
 
 <template>

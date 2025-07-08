@@ -3,9 +3,9 @@
         <p class="text-lg font-medium text-gray-800 mb-4">
             {{number + ".)  " + question }}
         </p>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4" :class="options.length > 3 ? 'md:grid-cols-5' : 'md:grid-cols-3'">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" :class="options.length > 3 ? 'md:grid-cols-5' : 'md:grid-cols-3'">
             <label v-for="option in options" :key="option" class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition duration-150 ease-in-out">
-                <input v-model="choice" type="radio" :name="`q${question}`" :value="option" class="form-radio h-5 w-5 text-blue-600 focus:ring-blue-500 rounded-full" required>
+                <input v-model="choice" type="radio" :name="`q${question}`" :value="option" class="form-radio h-5 w-5 text-blue-600 focus:ring-blue-500 rounded-full" required :disabled="submitted">
                 <span class="ml-2 text-gray-700">{{ ucWords(option) }}</span>
             </label>
             <!-- <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-blue-50 transition duration-150 ease-in-out">
@@ -35,6 +35,10 @@ import { ucWords } from '@/composables/questions'
         question: String,
         number: Number,
         options: Array,
+        submitted: {
+            default: false,
+            type: Boolean
+        },
         selected: {
             default: null,
             type: String
