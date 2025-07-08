@@ -61,6 +61,7 @@ import InstructionalFactorsResults from '../Components/InstructionalFactorsResul
 import LearningStyleResults from '../Components/LearningStyleResults.vue'
 import SummaryResults from '../Components/SummaryResults.vue'
 
+
 const page = usePage()
 const props = defineProps({
     assessment: Array,
@@ -70,7 +71,7 @@ const tabs = [
     { name: 'self-motivation', label: 'Self Motivation' },
     { name: 'self-efficacy', label: 'Self Efficacy' },
     { name: 'study habits', label: 'Study Habits' },
-    { name: 'instructional factors', label: 'Instructional Factors' },
+    // { name: 'instructional factors', label: 'Instructional Factors' },
     { name: 'summary', label: 'Summary' },
 ]
 const activeTab = ref('summary')

@@ -12,103 +12,157 @@ export function useQuestions() {
         options: ["Rarely (Low Frequency)", "Sometimes (Medium Frequency)", "Always (High Frequency)"],
         submitted: false,
         questions: [
-          {
-            question: "I can remember best by listening to a lecture that includes information, explanations and discussions.",
-            answer: ""
-          },
-          {
-            question: "I prefer to see information written on the board and supplemented by visual aids and assigned readings",
-            answer: ""
-          },
-          {
-            question: "I like to write things down or take notes for visual review.",
-            answer: ""
-          },
-          {
-            question: "I prefer to use posters, models, or actual practice and other activities in class.",
-            answer: ""
-          },
-          {
-            question: "I require explanations of diagrams, graphs, or visual directions",
-            answer: ""
-          },
-          {
-            question: "I enjoy working with my hands or making things.",
-            answer: ""
-          },
-          {
-            question: "I am skillful with and enjoy developing making graphs and charts",
-            answer: ""
-          },
-          {
-            question: "I can tell if sounds match when presented with pairs of sounds.",
-            answer: ""
-          },
-          {
-            question: "I can remember best by writing things down several times.",
-            answer: ""
-          },
-          {
-            question: "I can easily understand and follow directions on a map.",
-            answer: ""
-          },
-          {
-            question: "I do best in academic subjects by listening to lectures and tapes.",
-            answer: ""
-          },
-          {
-            question: "I play with coins or keys in my pocket.",
-            answer: ""
-          },
-          {
-            question: "I learn to spell better by repeating words out loud than by writing the words on paper.",
-            answer: ""
-          },
-          {
-            question: "I can understand a news article better by reading about it in the newspaper or online rather than by listening to a report about it on the radio or internet.",
-            answer: ""
-          },
-          {
-            question: "I chew gum, smoke or snack while studying.",
-            answer: ""
-          },
-          {
-            question: "I think the best way to remember something is to picture it in my mind",
-            answer: ""
-          },
-          {
-            question: "I learn the spelling of words by “finger spelling” them.",
-            answer: ""
-          },
-          {
-            question: "I would rather listen to a good lecture or speech than read about the same material.",
-            answer: ""
-          },
-          {
-            question: "I am good at working and solving jigsaw puzzles and mazes.",
-            answer: ""
-          },
-          {
-            question: "I grip objects in my hands during learning periods.",
-            answer: ""
-          },
-          {
-            question: "I prefer listening to the news on the radio or online rather than reading about it in a newspaper or on the internet.",
-            answer: ""
-          },
-          {
-            question: "I prefer obtaining information about an interesting subject by reading about it.",
-            answer: ""
-          },
-          {
-            question: "I feel very comfortable touching others hugging, handshaking, etc.",
-            answer: ""
-          },
-          {
-            question: "I follow oral directions better than written ones.",
-            answer: ""
-          }
-        ]
+            {
+              question: "I remember something better if I write it down.",
+              answer: "",
+              style: "visual"
+            },
+            {
+              question: "My written work doesn’t look neat to me. My papers have crossed-out words and erasures.",
+              answer: "",
+              style: "auditory"
+            },
+            {
+              question: "I get lost or am late if someone tells me how to get to a new place, and I don’t write down the directions.",
+              answer: "",
+              style: "visual"
+            },
+            {
+              question: "I tend to solve problems through a more trial-and-error approach, rather than from a step-by-step method.",
+              answer: "",
+              style: "tactile"
+            },
+            {
+              question: "I am not skilled in giving verbal explanations or directions.",
+              answer: "",
+              style: "tactile"
+            },
+            {
+              question: "I understand how to do something if someone tells me, rather than having to read the same thing to myself.",
+              answer: "",
+              style: "auditory"
+            },
+            {
+              question: "It’s hard for me to understand a joke when someone tells me.",
+              answer: "",
+              style: "visual"
+            },
+            {
+              question: "I learn best when I am shown how to do something, and I have the opportunity to do it.",
+              answer: "",
+              style: "tactile"
+            },
+            {
+              question: "When I can’t think of a specific word, I’ll use my hands a lot and call something a “what-cha-ma-call-it” or a “thing-a-ma-jig.”",
+              answer: "",
+              style: "tactile"
+            },
+            {
+              question: "I remember things that I hear, rather than things that I see or read.",
+              answer: "",
+              style: "auditory"
+            },
+            {
+              question: "It is better for me to get work done in a quiet place.",
+              answer: "",
+              style: "visual"
+            },
+            {
+              question: "I enjoy doodling and even my notes have lots of pictures and arrows in them.",
+              answer: "",
+              style: "visual"
+            },
+            {
+              question: "It helps to use my finger as a pointer when reading to keep my place.",
+              answer: "",
+              style: "auditory"
+            },
+            {
+              question: "I think better when I have the freedom to move around.",
+              answer: "",
+              style: "tactile"
+            },
+            {
+              question: "It’s hard for me to read other people’s handwriting.",
+              answer: "",
+              style: "auditory"
+            },
+            {
+              question: "Papers with very small print, blotchy dittos or poor copies are tough on me.",
+              answer: "",
+              style: "auditory"
+            },
+            {
+              question: "Using flashcards helps me to retain material for tests.",
+              answer: "",
+              style: "visual"
+            },
+            {
+              question: "I don’t like to read directions; I’d rather just start doing.",
+              answer: "",
+              style: "tactile"
+            },
+            {
+              question: "I do not become easily lost, even in strange surroundings.",
+              answer: "",
+              style: "tactile"
+            },
+            {
+              question: "If I am taking a test, I can “see” the textbook page and where the answer is located.",
+              answer: "",
+              style: "visual"
+            },
+            {
+              question: "Before I follow directions, it helps me to see someone else do it first.",
+              answer: "",
+              style: "tactile"
+            },
+            {
+              question: "If I had the choice to learn new information through a lecture or textbook, I would choose to hear it rather than read it.",
+              answer: "",
+              style: "auditory"
+            },
+            {
+              question: "Studying at a desk is not for me.",
+              answer: "",
+              style: "tactile"
+            },
+            {
+              question: "My eyes get tired fast, even though the eye doctor says that my eyes are ok.",
+              answer: "",
+              style: "auditory"
+            },
+            {
+              question: "When I read, I mix up words that look alike, such as “them” and “then,” “bad” and “dad.”",
+              answer: "",
+              style: "auditory"
+            },
+            {
+              question: "I find myself needing frequent breaks while studying.",
+              answer: "",
+              style: "tactile"
+            },
+            {
+              question: "It helps me to look at the person while listening; it keeps me focused.",
+              answer: "",
+              style: "visual"
+            },
+            {
+              question: "When trying to remember someone’s telephone number, or something new like that, it helps me to get a picture of it in my mind.",
+              answer: "",
+              style: "visual"
+            },
+            {
+              question: "It’s hard for me to understand what a person is saying when there are people talking or music playing.",
+              answer: "",
+              style: "visual"
+            },
+            {
+              question: "Writing is tiring. I press down too hard with my pen or pencil.",
+              answer: "",
+              style: "auditory"
+            }
+          ]
       },
     {
         category: "Self-Motivation",

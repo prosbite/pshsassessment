@@ -2,9 +2,9 @@ import { ref } from 'vue'
 
 export function useLearningStyles() {
     const organizedQuestions = ref({
-        'visual': [2,3,7,10,14,16,19,22],
-        'auditory': [1,5,8,11,13,18,21,24],
-        'tactile': [4,6,9,12,15,17,20,23],
+        visual: [0, 2, 6, 10, 11, 16, 19, 26, 27, 28],
+        auditory: [1, 5, 9, 12, 14, 15, 21, 23, 24, 29],
+        tactile: [3, 4, 7, 8, 13, 17, 18, 20, 22, 25]
     })
     const options = ref([
         {
@@ -15,12 +15,12 @@ export function useLearningStyles() {
         {
             label: 'Sometimes (Medium Frequency)',
             value: 'sometimes',
-            score: 3
+            score: 2
         },
         {
             label: 'Always (High Frequency)',
             value: 'always',
-            score: 5
+            score: 3
         }
     ])
     const extractCategory = (studentData: any, category: string) => {
@@ -32,7 +32,7 @@ export function useLearningStyles() {
         let score = 0
         organizedQuestions.value[category].map((question: number) => {
             for(let i in options.value){
-                if(options.value[i].label === studentData.questions[question-1].answer){
+                if(options.value[i].label === studentData.questions[question].answer){
                     score += options.value[i].score
                 }
             }

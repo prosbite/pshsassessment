@@ -73,7 +73,7 @@ const tabs = [
     { name: 'self-motivation', label: 'Self Motivation' },
     { name: 'self-efficacy', label: 'Self Efficacy' },
     { name: 'study habits', label: 'Study Habits' },
-    { name: 'instructional factors', label: 'Instructional Factors' },
+    // { name: 'instructional factors', label: 'Instructional Factors' },
 ]
 const questionaire = ref(JSON.parse(JSON.stringify(useQuestions().value)))
 const activeTab = ref('learning style')
