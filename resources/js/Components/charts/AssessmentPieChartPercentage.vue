@@ -28,7 +28,14 @@
 
   const chartOptions = {
     plugins: {
-      legend: { position: 'left' },
+      legend: {
+        position: 'left',
+        labels: {
+          font: {
+            size: 24,       // 👈 Sets font size of legend text
+          }
+        }
+      },
       datalabels: {
         color: '#fff',
         font: {

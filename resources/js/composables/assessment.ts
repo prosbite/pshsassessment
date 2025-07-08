@@ -49,8 +49,13 @@ export function useLearningStyles() {
         learnerStyleScore.visual = calculateScore(extractCategory(studentData, category), 'visual')
         learnerStyleScore.auditory = calculateScore(extractCategory(studentData, category), 'auditory')
         learnerStyleScore.tactile = calculateScore(extractCategory(studentData, category), 'tactile')
-        if(learnerStyleScore.visual > 0 && learnerStyleScore.auditory > 0 && learnerStyleScore.tactile > 0){
-            learnerStyleScore.picked = learnerStyleScore.visual > learnerStyleScore.auditory && learnerStyleScore.visual > learnerStyleScore.tactile ? 'visual' : learnerStyleScore.auditory > learnerStyleScore.visual && learnerStyleScore.auditory > learnerStyleScore.tactile ? 'auditory' : 'tactile'
+        const maxScore = Math.max(learnerStyleScore.visual, learnerStyleScore.auditory, learnerStyleScore.tactile);
+        if(maxScore > 0){
+            learnerStyleScore.picked = ""
+            if (learnerStyleScore.visual === maxScore) learnerStyleScore.picked += 'visual, ';
+            if (learnerStyleScore.auditory === maxScore) learnerStyleScore.picked += 'auditory, ';
+            if (learnerStyleScore.tactile === maxScore) learnerStyleScore.picked += 'tactile, ';
+            learnerStyleScore.picked = learnerStyleScore.picked.slice(0, -2);
         }else{
             learnerStyleScore.picked = '-'
         }

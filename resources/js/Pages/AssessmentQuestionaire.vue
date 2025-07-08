@@ -34,15 +34,16 @@
           class="mt-6 py-6 bg-white rounded-xl shadow-md transition-all duration-300"
         >
           <div v-for="question,index in questionaire" :key="index">
-            <div v-if="activeTab === question.category?.toLowerCase()">
-                <div v-if="question.submitted" class="flex flex-row gap-2 bg-green-600 items-center py-2 px-10">
+            <div v-if="activeTab === question.category?.toLowerCase()" class="relative">
+                <!-- <div v-if="question.submitted" class="flex flex-row gap-2 bg-green-600 items-center py-2 px-10">
                     <CheckCircleIcon class="w-7 h-7 text-white" />
                     <span class="text-lg font-bold text-white w-fit">
                         Done
                     </span>
-                </div>
+                </div> -->
+                <StatusRibbon v-if="question.submitted" status="Completed" type="success" />
                 <!-- <h2 class="text-xl font-bold mb-2">{{ question.category }}</h2> -->
-                <form @submit.prevent="submit(question)" class="space-y-12 p-10 py-16">
+                <form @submit.prevent="submit(question)" class="space-y-12 p-10 py-24">
                     <Question :submitted="question.submitted" :selected="answer.answer" @answer="answerQuestion($event,answer)" :options="question.options ?? ['very low', 'low', 'average', 'high', 'very high']" v-for="answer,index in question.questions" :key="answer.id" :question="answer.question" :number="index + 1" />
                     <button
                         v-if="!question.submitted"
@@ -67,6 +68,7 @@ import { onMounted } from 'vue'
 import { usePage, router } from '@inertiajs/vue3'
 import { HomeIcon } from '@heroicons/vue/24/outline' // or /solid
 import { CheckCircleIcon } from '@heroicons/vue/24/solid' // or /outline
+import StatusRibbon from '@/Components/StatusRibbon.vue'
 
 const tabs = [
     { name: 'learning style', label: 'Learning Style' },

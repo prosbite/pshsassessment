@@ -48,7 +48,7 @@ class QuestionaireController extends Controller
 
     public function results()
     {
-        $assessment = Assessment::all();
+        $assessment = Assessment::orderBy('lastName')->get();
         return Inertia::render('AssessmentResults')->with(['assessment' => $assessment]);
     }
 }

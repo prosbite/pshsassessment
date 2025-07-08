@@ -129,8 +129,13 @@ const assessedStudents = computed(() => {
         learnerStyleScore.visual = calculateScore(extractCategory(studentData), 'visual')
         learnerStyleScore.auditory = calculateScore(extractCategory(studentData), 'auditory')
         learnerStyleScore.tactile = calculateScore(extractCategory(studentData), 'tactile')
-        if(learnerStyleScore.visual > 0 && learnerStyleScore.auditory > 0 && learnerStyleScore.tactile > 0){
-            learnerStyleScore.picked = learnerStyleScore.visual > learnerStyleScore.auditory && learnerStyleScore.visual > learnerStyleScore.tactile ? 'visual' : learnerStyleScore.auditory > learnerStyleScore.visual && learnerStyleScore.auditory > learnerStyleScore.tactile ? 'auditory' : 'tactile'
+        const maxScore = Math.max(learnerStyleScore.visual, learnerStyleScore.auditory, learnerStyleScore.tactile);
+        if(maxScore > 0){
+            learnerStyleScore.picked = ""
+            if (learnerStyleScore.visual === maxScore) learnerStyleScore.picked += 'visual, ';
+            if (learnerStyleScore.auditory === maxScore) learnerStyleScore.picked += 'auditory, ';
+            if (learnerStyleScore.tactile === maxScore) learnerStyleScore.picked += 'tactile, ';
+            learnerStyleScore.picked = learnerStyleScore.picked.slice(0, -2);
         }else{
             learnerStyleScore.picked = 'unknown'
         }
@@ -140,26 +145,18 @@ const assessedStudents = computed(() => {
 })
 const visualStudents = computed(() => {
     return assessedStudents.value.filter((student: any) => {
-        return student.learningStyle.picked === 'visual'
+        return student.learningStyle.picked.includes('visual')
     })
 })
 const auditoryStudents = computed(() => {
     return assessedStudents.value.filter((student: any) => {
-        return student.learningStyle.picked === 'auditory'
+        return student.learningStyle.picked.includes('auditory')
     })
 })
 const tactileStudents = computed(() => {
     return assessedStudents.value.filter((student: any) => {
-        return student.learningStyle.picked === 'tactile'
+        return student.learningStyle.picked.includes('tactile')
     })
-})
-onMounted(() => {
-    // console.log(assessedStudents.value)
-    // console.log(visualStudents.value)
-    // console.log(auditoryStudents.value)
-    // console.log(tactileStudents.value)
-    // console.log(props.assessmentData)
-    // console.log()
 })
 </script>
 
