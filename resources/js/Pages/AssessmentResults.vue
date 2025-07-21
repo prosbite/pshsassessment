@@ -1,10 +1,21 @@
 <!-- ModernTabUI.vue -->
 <template>
     <div class="w-full max-w-7xl mx-auto mt-10">
-        <header class="w-full max-w-7xl py-12 text-center mb-8">
-            <h1 class="text-5xl font-extrabold text-gray-800 tracking-tight leading-tight sm:text-5xl md:text-5xl">
+        <header class="flex items-center justify-left w-full max-w-7xl py-12 text-center mb-8">
+            <h1 class="text-5xl font-extrabold flex-1 text-center text-gray-800 tracking-tight leading-tight sm:text-5xl md:text-5xl">
                 Diagnostic Results
             </h1>
+            <button @click="goToLog" class="flex mt-8 justify-center py-3 px-4 border border-transparent rounded-lg shadow-md text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200 ease-in-out transform hover:scale-105">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
+                    <line x1="8" y1="6" x2="21" y2="6" />
+                    <line x1="8" y1="12" x2="21" y2="12" />
+                    <line x1="8" y1="18" x2="21" y2="18" />
+                    <line x1="3" y1="6" x2="3.01" y2="6" />
+                    <line x1="3" y1="12" x2="3.01" y2="12" />
+                    <line x1="3" y1="18" x2="3.01" y2="18" />
+                </svg>
+
+            </button>
         </header>
       <!-- Tab Headers -->
       <div class="flex space-x-2 bg-gray-100 p-1 rounded-xl shadow-inner">
@@ -60,7 +71,7 @@ import StudyHabitsResults from '../Components/StudyHabitsResults.vue'
 import InstructionalFactorsResults from '../Components/InstructionalFactorsResults.vue'
 import LearningStyleResults from '../Components/LearningStyleResults.vue'
 import SummaryResults from '../Components/SummaryResults.vue'
-
+import { router } from '@inertiajs/vue3'
 
 const page = usePage()
 const props = defineProps({
@@ -79,6 +90,9 @@ const activeTab = ref('summary')
 const assessmentData = computed(() => {
     return props.assessment ?? []
 })
+const goToLog = () => {
+    router.visit(route('assessment-log'))
+}
 onMounted(() => {
     // console.log(props.assessment)
 })

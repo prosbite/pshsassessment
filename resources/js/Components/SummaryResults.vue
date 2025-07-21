@@ -5,6 +5,7 @@
         <table class="min-w-full bg-white shadow-lg rounded-lg overflow-hidden">
             <thead class="bg-gray-100 text-gray-700 text-sm uppercase tracking-wider">
                 <tr>
+                    <th class="px-6 py-3 text-left">No.</th>
                     <th class="px-6 py-3 text-left">Learner's Name</th>
                     <th class="px-6 py-3 text-left">Learning Style</th>
                     <th class="px-6 py-3 text-left">Self Motivation</th>
@@ -15,6 +16,9 @@
             <tbody class="text-gray-800 text-sm divide-y divide-gray-100">
             <!-- Repeatable Row -->
             <tr v-for="student, index in assessmentData" :key="index" class="hover:bg-gray-50 transition">
+                <td class="px-6 py-4 font-medium">
+                    {{ index + 1 }}
+                </td>
                 <td class="px-6 py-4 font-medium">
                     {{ student.name }}
                 </td>

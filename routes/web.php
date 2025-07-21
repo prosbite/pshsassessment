@@ -24,6 +24,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/assessment/results', [QuestionaireController::class, 'results'])->name('assessment-results');
+    Route::get('/assessment/log', [QuestionaireController::class, 'assessmentLog'])->name('assessment-log');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

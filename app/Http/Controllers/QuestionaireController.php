@@ -51,4 +51,10 @@ class QuestionaireController extends Controller
         $assessment = Assessment::orderBy('lastName')->get();
         return Inertia::render('AssessmentResults')->with(['assessment' => $assessment]);
     }
+
+    public function assessmentLog()
+    {
+        $assessment = Assessment::whereDate('created_at', date('Y-m-d'))->orderBy('lastName')->paginate(25);
+        return Inertia::render('StudentLog')->with(['students' => $assessment]);
+    }
 }
