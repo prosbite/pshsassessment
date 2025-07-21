@@ -10,7 +10,7 @@ const form = ref({
 })
 const invalidEntry = ref(false)
 const submitUser = () => {
-    if(form.value.entryCode !== 'trial-2025') {
+    if(form.value.entryCode !== 'diagnostic-2025') {
         invalidEntry.value = true
     }else {
         invalidEntry.value = false
