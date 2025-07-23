@@ -48,7 +48,10 @@ class QuestionaireController extends Controller
 
     public function results()
     {
-        $assessment = Assessment::orderBy('lastName')->get();
+        $assessment = Assessment::with(['enrollment.learner', 'enrollment.section.gradeLevel'])
+            ->orderBy('lastName')
+            ->where('entryCode', 'diagnostic-2025')
+            ->get();
         return Inertia::render('AssessmentResults')->with(['assessment' => $assessment]);
     }
 

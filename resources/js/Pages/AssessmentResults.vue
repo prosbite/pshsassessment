@@ -88,7 +88,7 @@ const tabs = [
 const activeTab = ref('summary')
 
 const assessmentData = computed(() => {
-    return props.assessment ?? []
+    return props.assessment.filter((assess) => assess.enrollment?.section?.section_name?.toLowerCase() === 'orosa') ?? []
 })
 const goToLog = () => {
     router.visit(route('assessment-log'))

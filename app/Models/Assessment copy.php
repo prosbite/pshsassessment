@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Assessment extends Model
 {
+    protected $table = 'assessments';
     protected $fillable = [
         'firstName',
         'lastName',
         'entryCode',
         'assessment',
-    ];
-    protected $casts = [
-        'assessment' => 'array',
+        'enrollment_id'
     ];
 
     public function enrollment()
