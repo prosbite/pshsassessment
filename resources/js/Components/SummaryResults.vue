@@ -35,6 +35,19 @@
                     {{ student.studyHabits ? ucWords(student.studyHabits) : '-' }}
                 </td>
             </tr>
+            <tr v-if="props.noAssessment.length > 0" class="bg-red-100">
+                <td class="px-6 py-4 font-medium" colspan="7">
+                   Below are students who have not participated yet.
+                </td>
+            </tr>
+            <tr v-for="learner, index in props.noAssessment" :key="index" class="hover:bg-gray-50 transition">
+                <td class="px-6 py-4 font-medium">
+                    {{ index + props.assessmentData.length + 1 }}
+                </td>
+                <td class="px-6 py-4 font-medium text-red-500" colspan="6">
+                    {{ ucWords(learner?.learner?.last_name) + ', ' + ucWords(learner?.learner?.first_name) }}
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
@@ -50,6 +63,7 @@ const assessment = useAssessment()
 const props = defineProps({
     assessmentData: Array,
     category: String,
+    noAssessment: Array
 })
 const assessmentData = computed(() => {
     let data = []

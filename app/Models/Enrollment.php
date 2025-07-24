@@ -32,4 +32,8 @@ class Enrollment extends Model
     {
         return $this->belongsTo(SchoolYear::class);
     }
+    public function assessments()
+    {
+        return $this->hasMany(Assessment::class);
+    }
 }
