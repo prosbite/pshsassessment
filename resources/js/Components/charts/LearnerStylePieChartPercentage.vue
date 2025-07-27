@@ -19,36 +19,49 @@
   ChartJS.register(ArcElement, Tooltip, Legend, Title, ChartDataLabels)
 
   const chartData = {
-    labels: ['Visual', 'Auditory', 'Tactile'],
-    datasets: [{
-        data: props.assessmentData,
-        backgroundColor: ['#f87171', '#facc15', '#22c55e'],
-    }]
-  }
+  labels: ['Visual', 'Auditory', 'Tactile'],
+  datasets: [{
+    data: props.assessmentData,
+    backgroundColor: ['#f87171', '#facc15', '#22c55e'],
+  }]
+};
 
-  const chartOptions = {
-    plugins: {
-      legend: {
-        position: 'left',
-        labels: {
-          font: {
-            size: 24,       // 👈 Sets font size of legend text
-          }
-        }
-      },
-      datalabels: {
-        color: '#fff',
-        font: {
-            size: 24,          // 🔥 Increase this value for larger text
-            weight: 'bold'     // Optional: make it bold
+const chartOptions = {
+  plugins: {
+    legend: {
+      position: 'left',
+      labels: {
+        filter: function (legendItem, chartData) {
+          const value = chartData.datasets[0].data[legendItem.index];
+          return value > 0;
         },
-        formatter: (value, context) => {
-          const data = context.chart.data.datasets[0].data
-          const total = data.reduce((a, b) => a + b, 0)
-          const percentage = ((value / total) * 100).toFixed(1)
-          return `${percentage}%`
+        font: {
+          size: 24,
         }
+      }
+    },
+    tooltip: {
+      callbacks: {
+        label: function (context) {
+          const value = context.raw;
+          return value > 0 ? `${context.label}: ${value}` : null;
+        }
+      }
+    },
+    datalabels: {
+      color: '#fff',
+      font: {
+        size: 24,
+        weight: 'bold'
+      },
+      formatter: (value, context) => {
+        const data = context.chart.data.datasets[0].data;
+        const total = data.reduce((a, b) => a + b, 0);
+        const percentage = ((value / total) * 100).toFixed(1);
+        return value > 0 ? `${percentage}%` : null;
       }
     }
   }
+};
+
   </script>
