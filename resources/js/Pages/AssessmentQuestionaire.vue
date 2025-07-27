@@ -77,7 +77,7 @@ const tabs = [
     { name: 'study habits', label: 'Study Habits' },
     // { name: 'instructional factors', label: 'Instructional Factors' },
 ]
-const questionaire = ref(JSON.parse(JSON.stringify(useQuestions().value)))
+const questionaire = ref([])
 const activeTab = ref('learning style')
 const answerQuestion = (answer: any, question: any) => {
     question.answer = answer
@@ -94,6 +94,7 @@ const submit = (questionSet: any) => {
         onSuccess: () => {
             if(page.props.flash?.udata?.assessment){
                 questionaire.value = page.props.flash?.udata.assessment
+                resetLocalStorage()
                 localStorage.setItem('assessment', JSON.stringify(page.props.flash?.udata))
             }
         },
@@ -102,10 +103,12 @@ const submit = (questionSet: any) => {
             // e.g., highlight fields or show an error toast
         },
     })
-
+}
+const resetLocalStorage = () => {
+    localStorage.removeItem('assessment')
 }
 const goHome = () => {
-    localStorage.removeItem('assessment')
+    resetLocalStorage()
     router.visit(route('front'))
 }
 onMounted(() => {
@@ -116,6 +119,9 @@ onMounted(() => {
     if(!page.props.flash?.udata?.assessment && localStorage.getItem('assessment')){
         questionaire.value = JSON.parse(localStorage.getItem('assessment'))?.assessment
     }
+    // if(!localStorage.getItem('assessment')) {
+    //     questionaire.value = JSON.parse(JSON.stringify(useQuestions().value))
+    // }
     if(!localStorage.getItem('assessment')) {
         router.visit(route('front'))
     }
