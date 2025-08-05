@@ -15,8 +15,8 @@ class Section extends Model
     {
         return $this->belongsTo(GradeLevel::class);
     }
-    public function enrollments()
+    public function assessmentTeachers()
     {
-        return $this->hasMany(Enrollment::class);
+        return $this->hasMany(AssessmentTeacher::class);
     }
 }
