@@ -8,7 +8,7 @@
                 </h1>
                  <!-- <TextDropdown :options="[{name: 'OROSA'}]" class="mb-8" /> -->
             </div>
-            <div class="flex items-center gap-2">
+            <!-- <div class="flex items-center gap-2">
                 <select
                     v-model="selectedSection"
                     id="lastName"
@@ -27,7 +27,7 @@
                         <line x1="3" y1="18" x2="3.01" y2="18" />
                     </svg>
                 </button>
-            </div>
+            </div> -->
         </header>
         <div class="flex justify-center">
 
@@ -107,7 +107,8 @@ const tabs = [
 const activeTab = ref('summary')
 
 const assessmentData = computed(() => {
-    return props.assessment.filter((assess) => assess.enrollment?.section?.id === selectedSection.value) ?? []
+    return props.assessment
+    // return props.assessment.filter((assess) => assess.enrollment?.section?.id === selectedSection.value) ?? []
 })
 const selectedEnrollees = computed(() => {
     return props.sections.filter((section) => section.id === selectedSection.value)?.[0]?.enrollments ?? []

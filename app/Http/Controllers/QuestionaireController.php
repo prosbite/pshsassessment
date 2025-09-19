@@ -57,9 +57,12 @@ class QuestionaireController extends Controller
             ->orderBy('sections.id')
             ->get();
 
-        $assessment = Assessment::with(['enrollment.learner', 'enrollment.section.gradeLevel'])
-            ->orderBy('lastName')
-            ->where('entryCode', 'diagnostic-2025')
+        // $assessment = Assessment::with(['enrollment.learner', 'enrollment.section.gradeLevel'])
+        //     ->orderBy('lastName')
+        //     ->where('entryCode', 'diagnostic-2025')
+        //     ->get();
+        $assessment = Assessment::orderBy('lastName')
+            ->where('entryCode', 'assessment-2025')
             ->get();
         return Inertia::render('AssessmentResults')->with(['assessment' => $assessment, 'sections' => $sections]);
     }
