@@ -62,7 +62,7 @@ class QuestionaireController extends Controller
         //     ->where('entryCode', 'diagnostic-2025')
         //     ->get();
         $assessment = Assessment::orderBy('lastName')
-            ->where('entryCode', 'assessment-2025')
+            ->where('entryCode', 'MTG-2025')
             ->get();
         return Inertia::render('AssessmentResults')->with(['assessment' => $assessment, 'sections' => $sections]);
     }
