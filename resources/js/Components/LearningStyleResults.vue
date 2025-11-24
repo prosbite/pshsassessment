@@ -16,7 +16,7 @@
                   <tr v-for="visualStudent, index in visualStudents" :key="index" class="hover:bg-gray-50 transition h-12">
                       <td class="px-6 py-4 font-medium h-fit">
                           <div class="flex gap-2">
-                              <span class="text-xs text-slate-600">
+                              <span class="text-black text-lg">
                                   {{ visualStudent.lastName + ', ' + visualStudent.firstName }}
                               </span>
                           </div>
@@ -38,7 +38,7 @@
                   <tr v-for="auditoryStudent, index in auditoryStudents" :key="index" class="hover:bg-gray-50 transition h-12">
                       <td class="px-6 py-4 font-medium h-fit">
                           <div class="flex gap-2">
-                              <span class="text-xs text-slate-600">
+                              <span class="text-black text-lg">
                                   {{ auditoryStudent.lastName + ', ' + auditoryStudent.firstName }}
                               </span>
                           </div>
@@ -60,7 +60,7 @@
                   <tr v-for="tactileStudent, index in tactileStudents" :key="index" class="hover:bg-gray-50 transition">
                       <td class="px-6 py-4 font-medium h-fit">
                           <div class="flex gap-2">
-                              <span class="text-xs text-slate-600">
+                              <span class="text-black text-lg">
                                   {{ tactileStudent.lastName + ', ' + tactileStudent.firstName }}
                               </span>
                           </div>

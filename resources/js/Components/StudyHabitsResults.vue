@@ -47,7 +47,7 @@
                           <!-- <span :class="item.hasData ? 'text-[10px] bg-green-600 text-white p-[1px] px-[2px] w-6 text-center h-fit rounded' : ''">
                               {{ item.score }}
                           </span> -->
-                          <span class="text-xs text-slate-600">
+                          <span class="text-black text-lg">
                               {{ item.name }}
                           </span>
                       </div>

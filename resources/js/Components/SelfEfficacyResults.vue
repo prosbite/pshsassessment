@@ -41,13 +41,13 @@
               </thead>
               <tbody class="text-gray-800 text-sm divide-y divide-gray-100">
               <!-- Repeatable Row -->
-              <tr v-for="assessment in transposedAssessment" :key="assessment.id" class="hover:bg-gray-50 transition">
-                  <td v-for="item in assessment.data" class="px-6 py-4 font-medium">
+              <tr v-for="assessment in transposedAssessment" :key="assessment.id" class="hover:bg-gray-50 transition text-lg">
+                  <td v-for="item in assessment.data" class="px-6 py-2 font-medium">
                       <div class="flex gap-2">
                           <!-- <span :class="item.hasData ? 'text-[10px] bg-green-600 text-white p-[1px] px-[2px] w-6 text-center h-fit rounded' : ''">
                               {{ item.score }}
                           </span> -->
-                          <span class="text-xs text-slate-600">
+                          <span class="text-black">
                               {{ item.name }}
                           </span>
                       </div>

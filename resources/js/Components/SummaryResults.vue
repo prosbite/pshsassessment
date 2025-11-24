@@ -15,36 +15,36 @@
             </thead>
             <tbody class="text-gray-800 text-sm divide-y divide-gray-100">
             <!-- Repeatable Row -->
-            <tr v-for="student, index in assessmentData" :key="index" class="hover:bg-gray-50 transition">
-                <td class="px-6 py-4 font-medium">
+            <tr v-for="student, index in assessmentData" :key="index" class="hover:bg-gray-50 transition text-lg text-black">
+                <td class="px-6 py-2">
                     {{ index + 1 }}
                 </td>
-                <td class="px-6 py-4 font-medium">
+                <td class="px-6 py-2">
                     {{ student.name }}
                 </td>
-                <td class="px-6 py-4 font-medium">
+                <td class="px-6 py-2">
                     {{ student.learningStyle ? ucWords(student.learningStyle) : '-' }}
                 </td>
-                <td class="px-6 py-4 font-medium">
+                <td class="px-6 py-2">
                     {{ student.selfMotivation ? ucWords(student.selfMotivation) : '-' }}
                 </td>
-                <td class="px-6 py-4 font-medium">
+                <td class="px-6 py-2">
                     {{ student.selfEfficacy ? ucWords(student.selfEfficacy) : '-' }}
                 </td>
-                <td class="px-6 py-4 font-medium">
+                <td class="px-6 py-2">
                     {{ student.studyHabits ? ucWords(student.studyHabits) : '-' }}
                 </td>
             </tr>
             <tr v-if="props.noAssessment.length > 0" class="bg-red-100">
-                <td class="px-6 py-4 font-medium" colspan="7">
+                <td class="px-6 py-2" colspan="7">
                    Below are students who have not participated yet.
                 </td>
             </tr>
             <tr v-for="learner, index in props.noAssessment" :key="index" class="hover:bg-gray-50 transition">
-                <td class="px-6 py-4 font-medium">
+                <td class="px-6 py-2">
                     {{ index + props.assessmentData.length + 1 }}
                 </td>
-                <td class="px-6 py-4 font-medium text-red-500" colspan="6">
+                <td class="px-6 py-2 text-red-500" colspan="6">
                     {{ ucWords(learner?.learner?.last_name) + ', ' + ucWords(learner?.learner?.first_name) }}
                 </td>
             </tr>
