@@ -4,6 +4,7 @@
 
   <script setup>
   import { Pie } from 'vue-chartjs'
+  import { computed } from 'vue'
   import {
     Chart as ChartJS,
     ArcElement,
@@ -18,13 +19,15 @@
   })
   ChartJS.register(ArcElement, Tooltip, Legend, Title, ChartDataLabels)
 
-  const chartData = {
+  const chartData = computed(() => {
+  return {
   labels: ['Very Low', 'Low', 'Average', 'High', 'Very High'],
   datasets: [{
     data: props.assessmentData,
     backgroundColor: ['#f87171', '#facc15', '#aaa', '#60a5fa', '#22c55e'],
   }]
-};
+  };
+});
 
 const chartOptions = {
   plugins: {

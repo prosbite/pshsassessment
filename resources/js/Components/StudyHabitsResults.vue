@@ -75,7 +75,7 @@
       category: String,
   })
   const assessmentResults = (assessment: any[], category: string) => {
-    console.log(assessment)
+    // console.log(assessment)
       const categoryData = assessment.assessment.filter((item: any) => item.category.toLowerCase() === category.toLowerCase())
       let score = 0
       categoryData[0]?.questions.map((item: any) => {

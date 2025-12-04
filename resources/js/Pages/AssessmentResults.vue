@@ -9,13 +9,21 @@
                  <!-- <TextDropdown :options="[{name: 'OROSA'}]" class="mb-8" /> -->
             </div>
             <div class="flex items-center gap-2">
-                <select
+                <!-- <select
                     v-model="selectedSection"
                     id="lastName"
                     required
                     class="block w-64 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                     <option value="" disabled selected>Select Section</option>
                     <option v-for="section in sections" :key="section.id" :value="section.id">{{section.grade_level_id + 6 }} - {{ section.section_name }}</option>
+                </select> -->
+                <select
+                    v-model="selectedSection"
+                    id="lastName"
+                    required
+                    class="block w-64 p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="" disabled selected>Select Group</option>
+                    <option v-for="choice in choices" :key="choice.id" :value="choice.value">{{choice.name}}</option>
                 </select>
                 <button @click="goToLog" class="flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-md text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-200 ease-in-out transform hover:scale-105">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
@@ -91,10 +99,28 @@ import TextDropdown from '@/Components/common/TextDropdown.vue'
 import { controllers } from 'chart.js'
 
 const page = usePage()
+const selectedGroup = ref([9,10])
 const props = defineProps({
     assessment: Array,
     sections: Array,
 });
+const choices = ref([
+    {
+        id: 0,
+        name: 'Grade 7-8',
+        value: '7-8',
+    },
+    {
+        id: 1,
+        name: 'Grade 9-10',
+        value: '9-10',
+    },
+    {
+        id: 2,
+        name: 'Grade 11-12',
+        value: '11-12',
+    }
+]);
 const selectedSection = ref('')
 const tabs = [
     { name: 'learning style', label: 'Learning Style' },
@@ -107,10 +133,13 @@ const tabs = [
 const activeTab = ref('summary')
 
 const assessmentData = computed(() => {
-    return props.assessment.filter((assess) => assess.enrollment?.section?.id === selectedSection.value) ?? []
+    return props.assessment.filter((assess: any) => {
+        const gradeLevel = assess.enrollment?.section?.grade_level?.grade_level;
+        return gradeLevel && selectedSection.value.split('-').includes(gradeLevel);
+    }) ?? [];
 })
 const selectedEnrollees = computed(() => {
-    return props.sections.filter((section) => section.id === selectedSection.value)?.[0]?.enrollments ?? []
+    return props.sections.filter((section: any) => section.id === selectedSection.value)?.[0]?.enrollments ?? []
 })
 const noAssessment = computed(() => {
     const assessedIds = new Set(assessmentData.value.map(a => a.enrollment_id));
@@ -120,7 +149,7 @@ const goToLog = () => {
     router.visit(route('assessment-log'))
 }
 onMounted(() => {
-    selectedSection.value = props.sections?.[0]?.id ?? ''
+    selectedSection.value = "7-8"
 })
 </script>
 

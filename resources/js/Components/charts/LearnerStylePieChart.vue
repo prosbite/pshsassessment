@@ -19,17 +19,15 @@
   // Register required components
   ChartJS.register(Title, Tooltip, Legend, ArcElement)
 
-  const chartData = {
+  const chartData = computed(() => {
+  return {
     labels: ['Visual', 'Auditory', 'Tactile'],
-    datasets: [
-      {
-        label: props.category,
-        data: [10,20,30],
-        backgroundColor: ['#f87171', '#facc15', '#22c55e'],
-        hoverOffset: 10
-      }
-    ]
-  }
+    datasets: [{
+      data: props.assessmentData, // This is now reactive
+      backgroundColor: ['#f87171', '#facc15', '#22c55e'],
+    }]
+  };
+});
 
   const chartOptions = {
     responsive: true,
