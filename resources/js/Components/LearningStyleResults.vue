@@ -3,6 +3,11 @@
         <div class="px-72">
             <LearnerStylePieChartPercentage :assessmentData="[visualStudents.length, auditoryStudents.length, tactileStudents.length]" category="Learning Style" />
         </div>
+        <div class="flex flex-col gap-1 font-bold mb-4">
+            <span>Male: {{ totalMale }}</span>
+            <span>Female: {{ totalFemale }}</span>
+            <span>Total: {{ totalMale + totalFemale }}</span>
+        </div>
         <div class="grid grid-cols-3 w-full gap-2 mb-32">
             <div class="w-full bg-white shadow-lg rounded-lg overflow-hidden">
                 <table class="min-w-full h-fit  overflow-hidden">
@@ -17,7 +22,7 @@
                       <td class="px-6 py-4 font-medium h-fit">
                           <div class="flex gap-2">
                               <span class="text-black text-lg">
-                                  {{ visualStudent.lastName + ', ' + visualStudent.firstName }}
+                                  {{ index + 1 }}. {{ visualStudent.lastName + ', ' + visualStudent.firstName }}
                               </span>
                           </div>
                       </td>
@@ -39,7 +44,7 @@
                       <td class="px-6 py-4 font-medium h-fit">
                           <div class="flex gap-2">
                               <span class="text-black text-lg">
-                                  {{ auditoryStudent.lastName + ', ' + auditoryStudent.firstName }}
+                                  {{ index + 1 }}. {{ auditoryStudent.lastName + ', ' + auditoryStudent.firstName }}
                               </span>
                           </div>
                       </td>
@@ -61,7 +66,7 @@
                       <td class="px-6 py-4 font-medium h-fit">
                           <div class="flex gap-2">
                               <span class="text-black text-lg">
-                                  {{ tactileStudent.lastName + ', ' + tactileStudent.firstName }}
+                                  {{ index + 1 }}. {{ tactileStudent.lastName + ', ' + tactileStudent.firstName }}
                               </span>
                           </div>
                       </td>
@@ -102,6 +107,12 @@ const options = ref([
         score: 3
     }
 ])
+const totalMale = computed(() => {
+    return props.assessmentData.filter((student: any) => student.enrollment?.learner?.gender === 'male').length
+})
+const totalFemale = computed(() => {
+    return props.assessmentData.filter((student: any) => student.enrollment?.learner?.gender === 'female').length
+})
 const extractCategory = (studentData: {}[]) => {
     return studentData.assessment.filter((item: any) => {
         return item.category.toLowerCase() === props.category.toLowerCase()

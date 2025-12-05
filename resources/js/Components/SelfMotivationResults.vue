@@ -3,6 +3,11 @@
     <div class="flex px-64 mb-32">
         <AssessmentPieChartPercentage :assessmentData="chartData" category="Self Motivation" />
     </div>
+     <div class="flex flex-col gap-1 font-bold mb-4">
+        <span>Male: {{ totalMale }}</span>
+        <span>Female: {{ totalFemale }}</span>
+        <span>Total: {{ totalMale + totalFemale }}</span>
+    </div>
     <!-- <table class="w-full border">
         <thead>
             <tr>
@@ -41,14 +46,14 @@
             </thead>
             <tbody class="text-gray-800 text-sm divide-y divide-gray-100">
             <!-- Repeatable Row -->
-            <tr v-for="assessment in transposedAssessment" :key="assessment.id" class="hover:bg-gray-50 transition">
+            <tr v-for="assessment,index in transposedAssessment" :key="assessment.id" class="hover:bg-gray-50 transition">
                 <td v-for="item in assessment.data" class="px-6 py-4 font-medium">
                     <div class="flex gap-2">
                         <!-- <span :class="item.hasData ? 'text-[10px] bg-green-600 text-white p-[1px] px-[2px] w-6 text-center h-fit rounded' : ''">
                             {{ item.score }}
                         </span> -->
                         <span class="text-black text-lg">
-                            {{ item.name }}
+                            {{ item.name? index + 1 + '.' : ''}} {{ item.name }}
                         </span>
                     </div>
                 </td>
@@ -73,6 +78,12 @@ const scoring = {
 const props = defineProps({
     assessmentData: Array,
     category: String,
+})
+const totalMale = computed(() => {
+    return props.assessmentData.filter((student: any) => student.enrollment?.learner?.gender === 'male').length
+})
+const totalFemale = computed(() => {
+    return props.assessmentData.filter((student: any) => student.enrollment?.learner?.gender === 'female').length
 })
 const assessmentResults = (assessment: any[], category: string) => {
     const categoryData = assessment.assessment.filter((item: any) => item.category.toLowerCase() === category.toLowerCase())

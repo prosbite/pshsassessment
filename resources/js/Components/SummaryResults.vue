@@ -1,6 +1,11 @@
 <template>
   <div class="py-16">
     <h1 class="text-2xl text-center font-bold mb-8">Student Assessment Summary</h1>
+    <div class="flex flex-col gap-1 font-bold mb-4">
+        <span>Male: {{ totalMale }}</span>
+        <span>Female: {{ totalFemale }}</span>
+        <span>Total: {{ totalMale + totalFemale }}</span>
+    </div>
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white shadow-lg rounded-lg overflow-hidden">
             <thead class="bg-gray-100 text-gray-700 text-sm uppercase tracking-wider">
@@ -64,6 +69,12 @@ const props = defineProps({
     assessmentData: Array,
     category: String,
     noAssessment: Array
+})
+const totalMale = computed(() => {
+    return props.assessmentData.filter((student: any) => student.enrollment?.learner?.gender === 'male').length
+})
+const totalFemale = computed(() => {
+    return props.assessmentData.filter((student: any) => student.enrollment?.learner?.gender === 'female').length
 })
 const assessmentData = computed(() => {
     let data = []
