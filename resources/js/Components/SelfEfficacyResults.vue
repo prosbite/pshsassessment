@@ -79,7 +79,7 @@
       assessmentData: Array,
       category: String,
   })
-  const totalMale = computed(() => {
+const totalMale = computed(() => {
     return props.assessmentData.filter((student: any) => student.enrollment?.learner?.gender === 'male').length
 })
 const totalFemale = computed(() => {
