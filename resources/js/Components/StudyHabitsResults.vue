@@ -60,10 +60,14 @@
               </tr>
               </tbody>
           </table>
-      </div>
-
     </div>
-  </template>
+    <div class="flex justify-center mt-8">
+      <button @click="exportToExcel" class="flex justify-center py-3 px-6 border border-transparent rounded-lg shadow-md text-lg font-semibold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-200 ease-in-out transform hover:scale-105">
+        Export to Excel
+      </button>
+    </div>
+  </div>
+</template>
 
   <script lang="ts" setup>
   import { computed, onMounted } from 'vue'
@@ -75,10 +79,16 @@
           'high': 4,
           'very high': 5
       }
-  const props = defineProps({
-      assessmentData: Array,
-      category: String,
-  })
+const props = defineProps({
+    assessmentData: Array,
+    category: String,
+    selectedSection: String,
+})
+const exportToExcel = () => {
+    const a = document.createElement('a')
+    a.href = route('assessment-results.export', { category: props.category, grades: props.selectedSection })
+    a.click()
+}
 const totalMale = computed(() => {
     return props.assessmentData.filter((student: any) => student.enrollment?.learner?.gender === 'male').length
 })

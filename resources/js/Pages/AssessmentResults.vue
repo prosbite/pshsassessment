@@ -63,19 +63,19 @@
           class="mt-6 p-6 bg-white rounded-xl shadow-md transition-all duration-300"
         >
           <div v-if="activeTab === 'learning style'">
-            <LearningStyleResults :assessmentData="assessmentData" category="learning style" />
+            <LearningStyleResults :assessmentData="assessmentData" :selectedSection="selectedSection" category="learning style" />
           </div>
           <div v-if="activeTab === 'self-motivation'">
-            <SelfMotivationResults :assessmentData="assessmentData" category="self-motivation" />
+            <SelfMotivationResults :assessmentData="assessmentData" :selectedSection="selectedSection" category="self-motivation" />
           </div>
           <div v-if="activeTab === 'self-efficacy'">
-            <SelfEfficacyResults :assessmentData="assessmentData" category="self-efficacy" />
+            <SelfEfficacyResults :assessmentData="assessmentData" :selectedSection="selectedSection" category="self-efficacy" />
           </div>
           <div v-if="activeTab === 'study habits'">
-            <StudyHabitsResults :assessmentData="assessmentData" category="Study Habits" />
+            <StudyHabitsResults :assessmentData="assessmentData" :selectedSection="selectedSection" category="Study Habits" />
           </div>
           <div v-if="activeTab === 'instructional factors'">
-            <InstructionalFactorsResults :assessmentData="assessmentData" category="instructional factors" />
+            <InstructionalFactorsResults :assessmentData="assessmentData" :selectedSection="selectedSection" category="instructional factors" />
           </div>
           <div v-if="activeTab === 'summary'">
             <SummaryResults :assessmentData="assessmentData" :noAssessment="noAssessment" category="summary" />

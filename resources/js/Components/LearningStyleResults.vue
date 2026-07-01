@@ -76,6 +76,11 @@
             </div>
         </div>
     </div>
+    <div class="flex justify-center mt-8">
+      <button @click="exportToExcel" class="flex justify-center py-3 px-6 border border-transparent rounded-lg shadow-md text-lg font-semibold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-200 ease-in-out transform hover:scale-105">
+        Export to Excel
+      </button>
+    </div>
 </template>
 
 <script lang="ts" setup>
@@ -84,7 +89,13 @@ import LearnerStylePieChartPercentage from './charts/LearnerStylePieChartPercent
 const props = defineProps({
     assessmentData: Array,
     category: String,
+    selectedSection: String,
 })
+const exportToExcel = () => {
+    const a = document.createElement('a')
+    a.href = route('assessment-results.export', { category: props.category, grades: props.selectedSection })
+    a.click()
+}
 const organizedQuestions = ref({
   visual: [0, 2, 6, 10, 11, 16, 19, 26, 27, 28],
   auditory: [1, 5, 9, 12, 14, 15, 21, 23, 24, 29],
